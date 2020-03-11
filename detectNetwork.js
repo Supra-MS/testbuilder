@@ -1,6 +1,7 @@
 // Given a credit card number, this function should return a string with the
 // name of a network, like 'MasterCard' or 'American Express'
 // Example: detectNetwork('343456789012345') should return 'American Express'
+
 // How can you tell one card network from another? Easy!
 // There are two indicators:
 //   1. The first few numbers (called the prefix)
@@ -8,7 +9,6 @@
 
 var detectNetwork = function(cardNumber) {
   var cardLength = cardNumber.length;
-  
   // The Diner's Club network always starts with a 38 or 39 and is 14 digits long
   var isDinersPrefix = /^3[89]/.test(cardNumber);
   var isDinersCard = (cardLength === 14);
@@ -53,6 +53,9 @@ var detectNetwork = function(cardNumber) {
   var visaSwitchConflict = /.(903|905|911|936)/.test(cardNumber);
   var doesVisaSwitchConflict = (visaSwitchConflict === false);
 
+  // Switch MasterCard conflict check
+  var masterSwitchConflict = /.(64182)/.test(cardNumber);
+  var doesMasterSwitchConflict = (masterSwitchConflict === false);
 
   // Diner's Club
   if (isDinersPrefix && isDinersCard) {
@@ -70,7 +73,7 @@ var detectNetwork = function(cardNumber) {
   }
 
   // MasterCard
-  if (isMasterPrefix && doesMasterMaestroConflict && isMasterCard) {
+  if (isMasterPrefix && doesMasterMaestroConflict && doesMasterSwitchConflict && isMasterCard) {
     return `MasterCard`;
   }
 
