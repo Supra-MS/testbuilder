@@ -35,7 +35,6 @@ describe('Introduction to Mocha Tests - READ ME FIRST', function () {
     var even = function (num) {
       return num / 2 === 0;
     }
-
     if (even(10) !== false) {
       throw new Error('10 should be even!');
     }
@@ -47,7 +46,6 @@ describe('Diner\'s Club', function () {
 
   it('has a prefix of 38 and a length of 14', function () {
     // throw new Error('Delete me!');
-
     if (detectNetwork('38345678901234') !== 'Diner\'s Club') {
       throw new Error('Test failed');
     }
@@ -57,7 +55,6 @@ describe('Diner\'s Club', function () {
     if (detectNetwork('39345678901234') !== 'Diner\'s Club') {
       throw new Error('Test failed');
     }
-
   });
 });
 
@@ -68,7 +65,6 @@ describe('American Express', function () {
     if (!isTrue) {
       throw new Error('Test failed');
     }
-
   };
 
   it('has a prefix of 34 and a length of 15', function () {
@@ -86,7 +82,6 @@ describe('Visa', function () {
   // Search the documentation to figure out how to access it.
   //   http://chaijs.com/
   var assert = chai.assert;
-
 
   it('has a prefix of 4 and a length of 13', function () {
     assert(detectNetwork('4123456789012') === 'Visa');
@@ -157,22 +152,17 @@ describe('Discover', function () {
 
   for (var i = 644; i < 650; i++) {
     var prefix16Len = i + '1345678901234';
-    (function (i, prefix16Len) {
+    var prefix19Len = i + '1345678901234567';
+    (function (i, prefix16Len, prefix19Len) {
       it(`has a prefix of ${i} and a length of 16`, function () {
         expect(detectNetwork(prefix16Len)).to.equal('Discover');
       });
-    })(i, prefix16Len)
-  }
 
-  for (var j = 644; j < 650; j++) {
-    var prefix19Len = j + '1345678901234567';
-    (function (j, prefix19Len) {
-      it(`has a prefix of ${j} and a length of 16`, function () {
+      it(`has a prefix of ${i} and a length of 16`, function () {
         expect(detectNetwork(prefix19Len)).to.equal('Discover');
       });
-    })(j, prefix19Len)
+    })(i, prefix16Len, prefix19Len)
   }
-
 });
 
 describe('Maestro', function () {
@@ -192,7 +182,6 @@ describe('Maestro', function () {
       cardNumber += Math.floor(Math.random() * (5 - 3 + 1) + 3);
     }
   }
-
 });
 
 describe('China UnionPay', function () {
@@ -233,7 +222,6 @@ describe('China UnionPay', function () {
       cardNumber += Math.floor(Math.random() * (3 - 1 + 1) + 1);
     }
   }
-
 });
 
 describe('Switch', function () {
